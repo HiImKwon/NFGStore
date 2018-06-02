@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Roboto:500');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.div-body{
+    margin-left: 5%;
+    width: 90%;
+}
+.top-nav{
+    width: 100%;
+    background-color: white;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.container{
+    /* background-color: red; */
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-template-rows: auto;
+    font-size: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.child{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  /* background-color: blue; */
+  width: auto;
+  height: auto;
+  /* border:1px solid black; */
+}
+
+.child > i{
+    padding-left: 5px;
+}
+
+.child:nth-child(4){
+    margin-right: 40%;
+}
+.child:nth-child(5){
+    cursor: auto;
+}
+.child:nth-child(5) > div{
+    cursor: pointer;
+    font-size: 12px;
+    margin:7px;
+    font-family: 'Montserrat', sans-serif;
+}
+.child:nth-child(5) > div:hover{
+    text-decoration: underline solid #FF4200;
+    color: #FF4200;
+}
+
+/* .child:nth-child(5){
+    cursor: context-menu;
+} */
+
+
+/* .child:nth-child(5) input{
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;    
+    padding: 7px 0;
+    padding-left: 10px;
+    border: none;
+    background-color: #1498D5;
+    
+}
+::placeholder{
+    color: black;
+    opacity: 1;
+}
+.child:nth-child(5) button{
+    padding: 7px 0;
+    padding-right: 10px;
+    background-color: #1498D5;
+    border: none;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    cursor: pointer;
+}
+.child:nth-child(5):hover > input{
+    background-color: #E3666E;
+    transition: all 0.2s;
+}
+.child:nth-child(5):hover > button{
+    background-color: #E3666E;
+    transition: all 0.2s;
+} */
+.trending{
+    margin-top: 2%;
+    border: 1px solid #DEDEDE;
+    width: 100%;
+    background-color: #02B1F2;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: auto;
+}
+.trending > div{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #DEDEDE;
+}
+
+.trending > div:nth-child(4){
+    border: none;
+}
+
+.image{
+    width: 39px;
+}
+.logo{
+    text-align: center;
+    padding: 7% 10%;
+}
+.big-title{
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 1%;
+    font-size: 18px;
+}
+.small-title{
+    color: #f2f2f2;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.trending > div:hover{
+    background-color: #FF4200;
+    transition: all 0.1s;
+}
+
+.search{
+    position: relative;
+    float: left;
+    background-color: red;
+    height: 50px;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 1%;
+    border: 1px solid #02B1F2;
+}
+.drop-down{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.drop-down > .btn{
+    outline: none;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    padding-top: 26%;
+    cursor: pointer;
+    padding-bottom: 26%;
+}
+
+#inputFilter{
+    width: 64.5%;
+    height: 48px;
+    border: none;
+    font-size: 14px;
+    color: #3a3a3a;
+    background: #fefefe;
+    padding-left: 90px;
+}
+
+#btnFilter{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 50px;
+    background: #02B1F2;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    outline: none;
+}
+.search:hover{
+    border:1px solid #FF4200;
+    transition: all 0.1s;
+}
+.search:hover #btnFilter{
+    background-color: #FF4200;
+    transition: all 0.1s;
+}
