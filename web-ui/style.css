@@ -187,3 +187,13 @@
     background-color: #FF4200;
     transition: all 0.1s;
 }
+.slide-show{
+    width: 62%;
+    margin-top: 7%;
+    margin-left: 19%;
+}
+.slide-show > .mySlideImg{
+    display: none;
+    width: 730px;
+    height: 400px;
+}
