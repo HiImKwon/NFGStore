@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           targetNamespace="http://netbeans.org/slideShow"
+           xmlns="http://netbeans.org/slideShow"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <xs:element name="slides" type="slides"/>
+    <xs:complexType name="slides">
+        <xs:sequence>
+            <xs:element name="slide" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="slideLink" type="xs:string"/>
+                        <xs:element name="slideImg" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+</xs:schema>

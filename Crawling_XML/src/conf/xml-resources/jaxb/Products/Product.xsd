@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           targetNamespace="http://netbeans.org/Product"
+           xmlns="http://netbeans.org/Product"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+           
+    <xs:element name="products" type="Products"/>
+    <xs:complexType name="Products">
+        <xs:sequence>
+            <xs:element name="product" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="href" type="xs:string"/>
+                        <xs:element name="avaUrl" type="xs:string"/>
+                        <xs:element name="price" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

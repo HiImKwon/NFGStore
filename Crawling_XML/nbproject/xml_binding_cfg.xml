@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<schemas xmlns='http://xml.netbeans.org/schema/JAXBWizConfig' destdir='build/generated-sources/jaxb' projectName='Crawling_XML' version='1.0'>
+	<schema type='-xmlschema' package='' name='Slide'>
+		<xjc-options>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='src/conf/xml-resources/jaxb/Slide/newXmlSchema.xsd' origLocation='web/newXmlSchema.xsd'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
+	<schema type='-xmlschema' package='' name='Categories'>
+		<xjc-options>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='src/conf/xml-resources/jaxb/Categories/Category.xsd' origLocation='web/Category.xsd'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
+	<schema type='-xmlschema' package='' name='Products'>
+		<xjc-options>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='src/conf/xml-resources/jaxb/Products/Product.xsd' origLocation='web/Product.xsd'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
+	<schema type='-xmlschema' package='' name='divineProduct'>
+		<xjc-options>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='src/conf/xml-resources/jaxb/divineProduct/divineProduct.xsd' origLocation='web/divineProduct.xsd'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
+</schemas>

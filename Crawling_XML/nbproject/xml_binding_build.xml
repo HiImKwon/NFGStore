@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+            *** GENERATED FROM xml_binding_cfg.xml - DO NOT EDIT  ***
+            *** Configure thru JAXB Wizard.                       ***
+        --><project name="Crawling_XML_jaxb" default="default" basedir=".">
+    <target name="xjc-typedef-target" depends="-init-project">
+        <typedef classname="com.sun.tools.xjc.XJCTask" name="xjc" xmlns:s="http://xml.netbeans.org/schema/JAXBWizConfig">
+            <classpath path="${jaxbwiz.xjcdef.classpath}"/>
+        </typedef>
+    </target>
+    <target name="jaxb-clean-code-generation" depends="clean,jaxb-code-generation"/>
+    <target name="jaxb-code-generation" depends="xjc-typedef-target,-do-init,-init-macrodef-javac">
+        <mkdir dir="${build.generated.sources.dir}/jaxb" xmlns:s="http://xml.netbeans.org/schema/JAXBWizConfig"/>
+        <mkdir dir="build/generated/jaxbCache" xmlns:s="http://xml.netbeans.org/schema/JAXBWizConfig"/>
+        <mkdir dir="build/generated/jaxbCache/Slide"/>
+        <xjc destdir="build/generated/jaxbCache/Slide" catalog="catalog.xml">
+            <classpath>
+                <pathelement location="${src.dir}"/>
+                <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
+            </classpath>
+            <arg value="-xmlschema"/>
+            <schema file="src/conf/xml-resources/jaxb/Slide/newXmlSchema.xsd"/>
+            <depends file="src/conf/xml-resources/jaxb/Slide/newXmlSchema.xsd"/>
+            <produces dir="build/generated/jaxbCache/Slide"/>
+        </xjc>
+        <copy todir="${build.generated.sources.dir}/jaxb">
+            <fileset dir="build/generated/jaxbCache/Slide"/>
+        </copy>
+        <mkdir dir="build/generated/jaxbCache/Categories"/>
+        <xjc destdir="build/generated/jaxbCache/Categories" catalog="catalog.xml">
+            <classpath>
+                <pathelement location="${src.dir}"/>
+                <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
+            </classpath>
+            <arg value="-xmlschema"/>
+            <schema file="src/conf/xml-resources/jaxb/Categories/Category.xsd"/>
+            <depends file="src/conf/xml-resources/jaxb/Categories/Category.xsd"/>
+            <produces dir="build/generated/jaxbCache/Categories"/>
+        </xjc>
+        <copy todir="${build.generated.sources.dir}/jaxb">
+            <fileset dir="build/generated/jaxbCache/Categories"/>
+        </copy>
+        <mkdir dir="build/generated/jaxbCache/Products"/>
+        <xjc destdir="build/generated/jaxbCache/Products" catalog="catalog.xml">
+            <classpath>
+                <pathelement location="${src.dir}"/>
+                <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
+            </classpath>
+            <arg value="-xmlschema"/>
+            <schema file="src/conf/xml-resources/jaxb/Products/Product.xsd"/>
+            <depends file="src/conf/xml-resources/jaxb/Products/Product.xsd"/>
+            <produces dir="build/generated/jaxbCache/Products"/>
+        </xjc>
+        <copy todir="${build.generated.sources.dir}/jaxb">
+            <fileset dir="build/generated/jaxbCache/Products"/>
+        </copy>
+        <mkdir dir="build/generated/jaxbCache/divineProduct"/>
+        <xjc destdir="build/generated/jaxbCache/divineProduct" catalog="catalog.xml">
+            <classpath>
+                <pathelement location="${src.dir}"/>
+                <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
+            </classpath>
+            <arg value="-xmlschema"/>
+            <schema file="src/conf/xml-resources/jaxb/divineProduct/divineProduct.xsd"/>
+            <depends file="src/conf/xml-resources/jaxb/divineProduct/divineProduct.xsd"/>
+            <produces dir="build/generated/jaxbCache/divineProduct"/>
+        </xjc>
+        <copy todir="${build.generated.sources.dir}/jaxb">
+            <fileset dir="build/generated/jaxbCache/divineProduct"/>
+        </copy>
+        <!--*** Web project javac macro does not support sourcepath attribute, so do not pass "sourcepath=${src.dir}"-->
+    </target>
+</project>

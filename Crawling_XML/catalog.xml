@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/Bui%20Quan/Desktop/Subject/PRX301/Crawling_XML/web/newXmlSchema.xsd" uri="src/conf/xml-resources/jaxb/Slide/newXmlSchema.xsd"/>
+    <system systemId="file:/C:/Users/Bui%20Quan/Desktop/Subject/PRX301/Crawling_XML/web/Category.xsd" uri="src/conf/xml-resources/jaxb/Categories/Category.xsd"/>
+    <system systemId="file:/C:/Users/Bui%20Quan/Desktop/Subject/PRX301/Crawling_XML/web/Product.xsd" uri="src/conf/xml-resources/jaxb/Products/Product.xsd"/>
+    <nextCatalog catalog="nbproject/private/retriever/catalog.xml"/>
+    <system systemId="file:/C:/Users/Bui%20Quan/Desktop/Subject/PRX301/Crawling_XML/web/productDetail.xsd" uri="src/conf/xml-resources/jaxb/productDetail/productDetail.xsd"/>
+    <system systemId="file:/C:/Users/Bui%20Quan/Desktop/Subject/PRX301/Crawling_XML/web/divineProduct.xsd" uri="src/conf/xml-resources/jaxb/divineProduct/divineProduct.xsd"/>
+</catalog>
