@@ -14,18 +14,6 @@
     /* background-color: red; */
 }
 
-.game-slide-show > .mySlideImg{
-    display: none;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
-.game-detail > div{
-    /* border: 1px solid black; */
-    /* background-color: green; */
-}
-
 .game-picture{
     justify-self: right;
 }

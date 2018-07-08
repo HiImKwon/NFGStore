@@ -35,8 +35,10 @@ public class getDivineProduct {
                 productDTO dto = addDivineProduct(productList.get(i).getProductName());
                 if (dto != null) {
                     float price = convertPrice(dto.getPrice());
-                    priceDAO.insertProductPrice(price, id, dto.getCreditName());
-                    System.out.println("insert divine price successful");
+                    if (price != -99) {
+                        priceDAO.insertProductPrice(price, id, dto.getCreditName());
+                        System.out.println("insert divine price successful");
+                    }
                 }
             }
         }
@@ -88,6 +90,11 @@ public class getDivineProduct {
         price = price.replace("VNĐ", "");
         price = price.trim();
 
-        return new Float(Float.parseFloat(price));
+        if (price.equals("")) {
+            return -99;
+        } else {
+            return new Float(Float.parseFloat(price));
+
+        }
     }
 }

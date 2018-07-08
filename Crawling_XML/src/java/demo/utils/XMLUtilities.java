@@ -5,7 +5,6 @@
  */
 package demo.utils;
 
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +12,7 @@ import java.io.Serializable;
 import java.io.StringWriter;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -27,7 +27,7 @@ import javax.xml.transform.stream.StreamSource;
  */
 public class XMLUtilities implements Serializable {
 
-    public String crawler(StreamSource htmlPath, String xslPath)
+    public static String crawler(StreamSource htmlPath, String xslPath)
             throws FileNotFoundException, IOException, TransformerConfigurationException, TransformerException {
         //init files
         StreamSource xslCate = new StreamSource(xslPath);
@@ -43,11 +43,21 @@ public class XMLUtilities implements Serializable {
         return stringWriter.toString();
     }
 
-    public Object JAXBUnmarshalling(InputStream inputXML, Class ctxClass) throws JAXBException {
+    public static Object JAXBUnmarshalling(InputStream inputXML, Class ctxClass) throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(ctxClass);
         Unmarshaller un = jc.createUnmarshaller();
         Object result = (Object) un.unmarshal(inputXML);
         return result;
+    }
+
+    public static String JAXBMarshalling(Object obj) throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(obj.getClass());
+        Marshaller marshaller = jaxbContext.createMarshaller();
+
+        StringWriter writer = new StringWriter();
+        marshaller.marshal(obj, writer);
+
+        return writer.toString();
     }
 
 //    public void XJCGenerateJavaObj(String xsdSchema) {
@@ -90,5 +100,4 @@ public class XMLUtilities implements Serializable {
 //            e.printStackTrace();
 //        }
 //    }
-
 }

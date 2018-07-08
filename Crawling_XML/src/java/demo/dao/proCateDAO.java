@@ -9,7 +9,10 @@ import demo.utils.DBUtilities;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -38,5 +41,69 @@ public class proCateDAO implements Serializable {
                 con.close();
             }
         }
+    }
+
+    public List<Integer> getCategory(int productId) throws SQLException {
+        Connection con = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        List<Integer> categoriesList = null;
+        try {
+            con = DBUtilities.makeConnection();
+            if (con != null) {
+                String sql = "SELECT categoryId FROM tblProduct_tblCategory where productId=?";
+                ptm = con.prepareStatement(sql);
+                ptm.setInt(1, productId);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    categoriesList.add(rs.getInt("categoryId"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return categoriesList;
+    }
+
+    public List<Integer> getGamesId(int categoryId) throws SQLException {
+        Connection con = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        List<Integer> categoriesList = new ArrayList<Integer>();
+        try {
+            con = DBUtilities.makeConnection();
+            if (con != null) {
+                String sql = "SELECT productId FROM tblProduct_tblCategory where categoryId=?";
+                ptm = con.prepareStatement(sql);
+                ptm.setInt(1, categoryId);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    categoriesList.add(rs.getInt("productId"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return categoriesList;
     }
 }

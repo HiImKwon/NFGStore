@@ -167,10 +167,10 @@
 .search{
     position: relative;
     float: left;
-    background-color: red;
+    /* background-color: red; */
     height: 50px;
-    width: 50%;
-    margin-left: 25%;
+    width: 45%;
+    margin-left: 27%;
     margin-top: 1%;
     border: 1px solid #02B1F2;
 }
@@ -249,7 +249,7 @@
     cursor: pointer;
     grid-column: 2/span 1;
     grid-row: 1/span 1;
-    margin-left: 86%;
+    margin-left: 80%;
     justify-self: right;
     align-self: center;
     padding: 5px 10px;
@@ -270,6 +270,7 @@
     grid-template-rows: auto;
     grid-column: 1/span 1;
     grid-row: 1/span 1;
+    margin-right: 68%;
     border-top-right-radius: 999px;
     border-bottom-right-radius: 999px;
     padding: 0px 5px;
@@ -300,7 +301,7 @@
     margin-top: 2%;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: repeat(2,auto);
+    grid-template-rows: repeat(3,auto);
     /* background-color: red; */
 }
 

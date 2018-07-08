@@ -41,7 +41,7 @@ public class getProduct {
             }
 
             //for each category i: category index
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 8; i++) {
                 String cateString = getCategory.cateList.get(i);
 
                 //replace "%20" if cateString contain space
@@ -60,7 +60,7 @@ public class getProduct {
 
                 //after receiving pageCount, get product for each page in each category
                 //for each page j: page index
-                for (int j = 1; j <= 1; j++) {
+                for (int j = 1; j <= 9; j++) {
                     crawler.parseHTML("http://wongstore.com/theloai/" + cateString + "?page=" + j,
                             "<div class=\"container product\">",
                             "</section>",

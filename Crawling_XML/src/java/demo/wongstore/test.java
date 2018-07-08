@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerException;
 import demo.divineshop.getDivineProduct;
-import demo.wongstore.getProduct;
 
 /**
  *
@@ -21,31 +20,30 @@ public class test {
     public static void main(String[] args)
             throws JAXBException, FileNotFoundException, ClassNotFoundException, SQLException, TransformerException {
         try {
+
             getCategory gCate = new getCategory();
             gCate.getCategory();
+
             getProduct gProduct = new getProduct();
             gProduct.getProduct();
+
+            productToDB proToDB = new productToDB();
+            proToDB.productToDB();
+            
+            productPriceToDB priceToDB = new productPriceToDB();
+            priceToDB.productPriceToDB();
+            
+            categoryToDB cateToDB = new categoryToDB();
+            cateToDB.cateToDB();
+            
             getDivineProduct divineProduct = new getDivineProduct();
             divineProduct.searchDivineProduct();
 
-//            productToDB proToDB = new productToDB();
-//            proToDB.productToDB();
-//            productPriceToDB priceToDB = new productPriceToDB();
-//            priceToDB.productPriceToDB();
-//            categoryToDB cateToDB = new categoryToDB();
-//            cateToDB.cateToDB();
 //            getCategory gCate = new getCategory();
 //            gCate.getCategory();
 //            getDivineProduct gProduct = new getDivineProduct();
 //            gProduct.getDivineProduct();
 //            gProduct.putProductListToDB();
-
-
-
-
-
-
-
 //            crawlerBoi.parseHTML("http://wongstore.com", "<header>", "<title>Wong's Store - Shop Game Bản Quyền</title>", "");
 //            XMLUtilities XMLUtil = new XMLUtilities();
 //
