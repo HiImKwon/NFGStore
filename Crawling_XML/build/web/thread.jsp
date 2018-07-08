@@ -65,9 +65,12 @@
                 5. User game's name to search for game's price in second page. Then add it to DB.
             </p>
         </div>
-        <button class="button">
-            Home
-        </button>
+        <form action="productHomePageServlet">
+            <button type="submit" name="btAction" class="button">
+                Home
+            </button>
+        </form>
+
         <!-- end -->
         <div class="ending-div">
             <div class="information">

@@ -43,7 +43,7 @@ public class threadServlet extends HttpServlet {
                 request.setAttribute("CORRECT", "Correct pin!");
                 if (btAction.equals("Run")) {
                     test testThread = new test();
-                    testThread.runCrawl();
+                    testThread.runCrawl(getServletContext());
                 } else if (btAction.equals("Pause")) {
                     getProduct.isInterupt = true;
                 }

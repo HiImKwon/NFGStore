@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.ServletContext;
 import org.netbeans.category.Categories;
 
 /**
@@ -23,14 +24,14 @@ public class getCategory {
 
     public static List<String> cateList = null;
 
-    public void getCategory() throws IOException {
+    public void getCategory(ServletContext context) throws IOException {
         InputStream is = null;
         try {
             Crawler crawler = new Crawler();
             crawler.parseHTML("http://wongstore.com", "<header>", "<title>Wong's Store - Shop Game Bản Quyền</title>", "");
             XMLUtilities xmlUtils = new XMLUtilities();
-
-            String result = xmlUtils.crawler(crawler.inUseHTML, "./web/Category.xsl");
+            String realPath = context.getRealPath("/");
+            String result = xmlUtils.crawler(crawler.inUseHTML, realPath + "Category.xsl");
             is = new ByteArrayInputStream(result.toString().getBytes());
             Categories cate = (Categories) xmlUtils.JAXBUnmarshalling(is, Categories.class);
             if (cateList == null) {
@@ -38,6 +39,12 @@ public class getCategory {
 
             }
             //put category to DB
+            //to vietnames
+//            for (int i = 0; i < cate.getCategory().size(); i++) {
+//                if (true) {
+//                    
+//                }
+//            }
             for (int i = 0; i < cate.getCategory().size(); i++) {
                 String dto = cate.getCategory().get(i);
                 cateList.add(dto);
@@ -50,7 +57,7 @@ public class getCategory {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (is!=null) {
+            if (is != null) {
                 is.close();
             }
         }

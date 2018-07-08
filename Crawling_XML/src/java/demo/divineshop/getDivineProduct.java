@@ -18,6 +18,7 @@ import javax.xml.transform.TransformerException;
 import org.netbeans.divineproduct.Product;
 import static demo.wongstore.getProduct.productList;
 import java.sql.SQLException;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -25,18 +26,18 @@ import java.sql.SQLException;
  */
 public class getDivineProduct {
 
-    public void searchDivineProduct()
+    public void searchDivineProduct(ServletContext context)
             throws ClassNotFoundException, SQLException, IOException, JAXBException {
         if (productList != null) {
             productDAO productDAO = new productDAO();
             productPriceDAO priceDAO = new productPriceDAO();
             for (int i = 0; i < productList.size(); i++) {
                 int id = productDAO.getProductId(productList.get(i).getProductName());
-                productDTO dto = addDivineProduct(productList.get(i).getProductName());
+                productDTO dto = addDivineProduct(productList.get(i).getProductName(), context);
                 if (dto != null) {
                     float price = convertPrice(dto.getPrice());
                     if (price != -99) {
-                        priceDAO.insertProductPrice(price, id, dto.getCreditName(),dto.getHref());
+                        priceDAO.insertProductPrice(price, id, dto.getCreditName(), dto.getHref());
                         System.out.println("insert divine price successful");
                     }
                 }
@@ -45,7 +46,7 @@ public class getDivineProduct {
 
     }
 
-    private productDTO addDivineProduct(String productName)
+    private productDTO addDivineProduct(String productName, ServletContext context)
             throws IOException, JAXBException {
         Crawler crawler = new Crawler();
         XMLUtilities xmlUtils = new XMLUtilities();
@@ -54,13 +55,14 @@ public class getDivineProduct {
             crawler.parseHTML("http://divineshop.vn/index.php?route=product/search&search=" + productName.replace(" ", "%20"),
                     "<div class=\"row products-category\">",
                     "<div class=\"row\">", "");
-            String divineProduct = xmlUtils.crawler(Crawler.inUseHTML, "web/divineProduct.xsl");
+            String realPath = context.getRealPath("/");
+            String divineProduct = xmlUtils.crawler(Crawler.inUseHTML, realPath + "divineProduct.xsl");
 
             System.out.println(divineProduct);
             if (divineProduct.contains("<price/>") || divineProduct.contains("<productName/>") || divineProduct.contains("<href/>")) {
                 return null;
             }
-            is = new ByteArrayInputStream(divineProduct.toString().getBytes());
+            is = new ByteArrayInputStream(divineProduct.toString().getBytes("UTF-8"));
             Product diviProduct = (Product) xmlUtils.JAXBUnmarshalling(is, Product.class);
             productDTO proDTO = new productDTO();
             proDTO.setCreditName("DivineShop");

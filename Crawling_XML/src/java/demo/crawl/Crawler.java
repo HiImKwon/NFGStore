@@ -18,6 +18,7 @@ import java.net.CookiePolicy;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,7 +47,7 @@ public class Crawler {
         try {
             CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
             URL url = new URL(uri);
-            HttpURLConnection uc = (HttpURLConnection) url.openConnection();
+            URLConnection uc = url.openConnection();
             uc.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
             uc.addRequestProperty("Accept-Charset", "UTF-8");
             is = uc.getInputStream();
@@ -174,12 +175,12 @@ public class Crawler {
             sb = new StringBuffer(tmp);
         }
         if (sb.toString().contains("<section class=\"detail-product\" >") || sb.toString().contains("<section class=\"wrapper-box\">")) {
-            InputStream is = new ByteArrayInputStream(sb.toString().getBytes());
+            InputStream is = new ByteArrayInputStream(sb.toString().getBytes("UTF-8"));
             return is;
 
         } else {
             sb = new StringBuffer(fixString(sb.toString()));
-            InputStream is = new ByteArrayInputStream(sb.toString().getBytes());
+            InputStream is = new ByteArrayInputStream(sb.toString().getBytes("UTF-8"));
             return is;
         }
 

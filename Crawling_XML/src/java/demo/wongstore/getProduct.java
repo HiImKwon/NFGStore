@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerException;
 import org.netbeans.product.Products;
@@ -30,11 +31,21 @@ public class getProduct extends Thread {
 
     public static List<productDTO> productList = null;
     public static boolean isInterupt = false;
+    private ServletContext context;
+    private test waitingMainThread;
+
+    public void setWaitingMainThread(test waitingMainThread) {
+        this.waitingMainThread = waitingMainThread;
+    }
+
+    public void setContext(ServletContext context) {
+        this.context = context;
+    }
 
     @Override
     public void run() {
         try {
-            getProduct();
+            getProduct(context);
         } catch (IOException ex) {
             Logger.getLogger(getProduct.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TransformerException ex) {
@@ -46,9 +57,13 @@ public class getProduct extends Thread {
         } catch (SQLException ex) {
             Logger.getLogger(getProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("thread ending");
+        synchronized (waitingMainThread) {
+            waitingMainThread.notify();
+        }
     }
 
-    public void getProduct()
+    public void getProduct(ServletContext context)
             throws IOException, FileNotFoundException, TransformerException, JAXBException, ClassNotFoundException, SQLException {
         if (getCategory.cateList.size() != 0 || getCategory.cateList != null) {
             Crawler crawler = new Crawler();
@@ -91,7 +106,8 @@ public class getProduct extends Thread {
                             "<div class=\"container product\">",
                             "</section>",
                             "");
-                    String product = xmlUtils.crawler(crawler.inUseHTML, "./web/Product.xsl");
+                    String realPath = context.getRealPath("/");
+                    String product = xmlUtils.crawler(crawler.inUseHTML, realPath + "Product.xsl");
 
                     InputStream inputStream = new ByteArrayInputStream(product.toString().getBytes());
                     Products products = (Products) xmlUtils.JAXBUnmarshalling(inputStream, Products.class);
@@ -133,6 +149,9 @@ public class getProduct extends Thread {
             for (int i = 0; i < productList.size(); i++) {
                 String productName = getProductName(productList.get(i).getHref());
                 productName = toUpperProductName(productName);
+                if (productName.contains("Dat Truoc")) {
+                    productName = productName.replace("Dat Truoc", "");
+                }
                 System.out.println(productName);
                 productList.get(i).setProductName(productName);
             }

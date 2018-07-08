@@ -173,9 +173,9 @@
                         <img src="logo/light-bulb.png" alt="">
                     </div>
                 </div>
-                <div class="more-info">
+<!--                <div class="more-info">
                     Xem thêm
-                </div>
+                </div>-->
             </div>
 
             <!-- update-items -->
@@ -233,9 +233,9 @@
                         <img src="logo/fire.png" alt="">
                     </div>
                 </div>
-                <div class="more-info">
+<!--                <div class="more-info">
                     Xem thêm
-                </div>
+                </div>-->
             </div>
 
             <!-- update-items -->

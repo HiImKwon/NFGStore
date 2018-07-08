@@ -215,7 +215,7 @@
 
                         var creditName = prices[i].getElementsByTagName("creditName")[0].childNodes[0].textContent;
                         var price = prices[i].getElementsByTagName("price")[0].childNodes[0].textContent;
-                        var href = "hello";
+                        var href = prices[i].getElementsByTagName("href")[0].childNodes[0].textContent;
 
                         var linkPriceContainer = document.createElement("div");
                         linkPriceContainer.className = "link-price-container";

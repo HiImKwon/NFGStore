@@ -38,7 +38,8 @@ public class productPriceToDB {
         
 
         //eliminate VND currency
-        price = price.replace("VNĐ", "");
+        price = price.replace("VNĐ", "");    
+        price = price.replace("VN?", "");
         price = price.trim();
 
         return new Float(Float.parseFloat(price));

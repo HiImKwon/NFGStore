@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerException;
 import demo.divineshop.getDivineProduct;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -17,20 +18,27 @@ import demo.divineshop.getDivineProduct;
  */
 public class test {
 
-    public void runCrawl()
+    public void runCrawl(ServletContext context)
             throws JAXBException, FileNotFoundException, ClassNotFoundException, SQLException, TransformerException {
         try {
 //            test testMePls = new test();
 //            testMePls.start();
 
             getCategory gCate = new getCategory();
-            gCate.getCategory();
+            gCate.getCategory(context);
 
             getProduct gProduct = new getProduct();
+            gProduct.setContext(context);
+            gProduct.setWaitingMainThread(this);
             Thread productThread = new Thread(gProduct);
             productThread.start();
 //            gProduct.getProduct();
-
+            synchronized (this) {
+                System.out.println("have to wait for product list");
+                this.wait();
+                System.out.println("product list is ready");
+            }
+            
             productToDB proToDB = new productToDB();
             proToDB.productToDB();
 
@@ -39,9 +47,9 @@ public class test {
 
             categoryToDB cateToDB = new categoryToDB();
             cateToDB.cateToDB();
-            
+
             getDivineProduct divineProduct = new getDivineProduct();
-            divineProduct.searchDivineProduct();
+            divineProduct.searchDivineProduct(context);
 
 //            getCategory gCate = new getCategory();
 //            gCate.getCategory();
