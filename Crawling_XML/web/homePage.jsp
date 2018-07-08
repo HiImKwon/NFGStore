@@ -74,9 +74,11 @@
                         Crawl:
                     </div>
                     <div>
-                        <button>
-                            Click here
-                        </button>
+                        <form action="thread.jsp">
+                            <button>
+                                Click here
+                            </button>
+                        </form>
                     </div>
                     <!-- <input type="text" placeholder="Tìm kiếm">
                         <button type="submit"><i class="fas fa-search"></i></button> -->

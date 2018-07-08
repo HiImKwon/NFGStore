@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,21 +21,33 @@
     </head>
     <body>
         <div class="logo-on-top">
-            <img src="../logo/logo2.png" />
+            <img src="logo/logo2.png" />
         </div>
-        <div class="text-field">
-            PIN CODE:
-            <input type="password" name="txtPin" />
-        </div>
-        <button class="button">
-            Check!
-        </button>
-        <div class=toggle-button>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider"></span>
-            </label>
-        </div>
+        <form action="threadServlet">
+            <div class="text-field">
+                PIN CODE:
+                <input type="password" name="txtPin"/>
+            </div>
+            <button type="submit" class="button" name="btAction" value="Run">RUN</button>
+            <button type="submit" class="button" name="btAction" value="Pause">PAUSE</button>
+            <input type="hidden" name="txtPin" value="${requestScope.PIN}" />
+        </form>
+        <c:set var="error" value="${requestScope.ERROR}"/>   
+        <c:set var="correct" value="${requestScope.CORRECT}"/>
+        <c:if test="${not empty error}">
+            <div class="notification">
+                <h2 style="color: red">
+                    <c:out value="${error}"/>
+                </h2>
+            </div>
+        </c:if>
+        <c:if test="${not empty correct}">
+            <div class="notification">
+                <h2 style="color: green">
+                    <c:out value="${correct}"/>
+                </h2>
+            </div>
+        </c:if>
         <div class="description">
             <p>
                 1. Crawling categories, then put those categories to DB.
@@ -69,7 +83,7 @@
                 <br/> Address: FPT University HCM
             </div>
             <div class="end-logo">
-                <img src="../logo/logo.png" alt="">
+                <img src="logo/logo.png" alt="">
             </div>
         </div>
         <!-- copyright -->

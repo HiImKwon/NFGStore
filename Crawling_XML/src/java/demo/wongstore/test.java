@@ -17,22 +17,26 @@ import demo.divineshop.getDivineProduct;
  */
 public class test {
 
-    public static void main(String[] args)
+    public void runCrawl()
             throws JAXBException, FileNotFoundException, ClassNotFoundException, SQLException, TransformerException {
         try {
+//            test testMePls = new test();
+//            testMePls.start();
 
             getCategory gCate = new getCategory();
             gCate.getCategory();
 
             getProduct gProduct = new getProduct();
-            gProduct.getProduct();
+            Thread productThread = new Thread(gProduct);
+            productThread.start();
+//            gProduct.getProduct();
 
             productToDB proToDB = new productToDB();
             proToDB.productToDB();
-            
+
             productPriceToDB priceToDB = new productPriceToDB();
             priceToDB.productPriceToDB();
-            
+
             categoryToDB cateToDB = new categoryToDB();
             cateToDB.cateToDB();
             

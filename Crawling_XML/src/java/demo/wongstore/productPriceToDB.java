@@ -24,7 +24,7 @@ public class productPriceToDB {
             for (int i = 0; i < productList.size(); i++) {
                 float price = convertToFloat(productList.get(i).getPrice());
                 int id = proDAO.getProductId(productList.get(i).getProductName());
-                priceDAO.insertProductPrice(price, id, productList.get(i).getCreditName());
+                priceDAO.insertProductPrice(price, id, productList.get(i).getCreditName(),productList.get(i).getHref());
             }
         }
     }

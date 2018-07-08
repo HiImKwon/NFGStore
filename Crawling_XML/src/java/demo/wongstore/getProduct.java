@@ -16,6 +16,8 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerException;
 import org.netbeans.product.Products;
@@ -24,9 +26,27 @@ import org.netbeans.product.Products;
  *
  * @author Bui Quan
  */
-public class getProduct {
+public class getProduct extends Thread {
 
     public static List<productDTO> productList = null;
+    public static boolean isInterupt = false;
+
+    @Override
+    public void run() {
+        try {
+            getProduct();
+        } catch (IOException ex) {
+            Logger.getLogger(getProduct.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(getProduct.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JAXBException ex) {
+            Logger.getLogger(getProduct.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(getProduct.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(getProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void getProduct()
             throws IOException, FileNotFoundException, TransformerException, JAXBException, ClassNotFoundException, SQLException {
@@ -42,6 +62,9 @@ public class getProduct {
 
             //for each category i: category index
             for (int i = 0; i < 8; i++) {
+                if (isInterupt == true) {
+                    break;
+                }
                 String cateString = getCategory.cateList.get(i);
 
                 //replace "%20" if cateString contain space
@@ -61,6 +84,9 @@ public class getProduct {
                 //after receiving pageCount, get product for each page in each category
                 //for each page j: page index
                 for (int j = 1; j <= 9; j++) {
+                    if (isInterupt == true) {
+                        break;
+                    }
                     crawler.parseHTML("http://wongstore.com/theloai/" + cateString + "?page=" + j,
                             "<div class=\"container product\">",
                             "</section>",
@@ -73,7 +99,9 @@ public class getProduct {
                     //add each product from products to productList
                     //k:list of product in one page (products)
                     for (int k = 0; k < products.getProduct().size(); k++) {
-
+                        if (isInterupt == true) {
+                            break;
+                        }
                         //get avaUrl, creditName, price, href of dto
                         productDTO productDTO = new productDTO();
                         productDTO.setAvaUrl(products.getProduct().get(k).getAvaUrl());
@@ -98,6 +126,7 @@ public class getProduct {
                     }//end of list products in one page
                     inputStream.close();
                 }//end of all pages in one category
+
             }//end of category for
 
             //get productName from href
@@ -149,7 +178,5 @@ public class getProduct {
         //Result
         return new String(array);
     }
-    
-    
-    
+
 }

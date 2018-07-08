@@ -20,6 +20,10 @@
         <servlet-name>gameListServlet</servlet-name>
         <servlet-class>demo.servlet.gameListServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>threadServlet</servlet-name>
+        <servlet-class>demo.servlet.threadServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>gameDetailServlet</servlet-name>
         <url-pattern>/gameDetailServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>gameListServlet</servlet-name>
         <url-pattern>/gameListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>threadServlet</servlet-name>
+        <url-pattern>/threadServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

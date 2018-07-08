@@ -7,12 +7,9 @@ package demo.servlet;
 
 import demo.dao.productDAO;
 import demo.dao.productPriceDAO;
-import demo.dto.productDTO;
-import demo.dto.productDTOs;
 import demo.dto.productDisplay;
 import demo.dto.productDisplays;
 import demo.dto.productPriceDTO;
-import demo.dto.productPriceDTOs;
 import demo.utils.XMLUtilities;
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -19,24 +19,36 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "productPriceDTO", propOrder = {
     "creditName",
     "price",
-    "productId"
+    "productId",
+    "href"
 })
 public class productPriceDTO implements Serializable {
 
-    @XmlElement(name = "creditName")
+    @XmlElement
     private String creditName;
-    @XmlElement(name = "price")
+    @XmlElement
     private float price;
-    @XmlElement(name = "productId")
+    @XmlElement
     private int productId;
+    @XmlElement
+    private String href;
 
     public productPriceDTO() {
     }
 
-    public productPriceDTO(String creditName, float price, int productId) {
+    public productPriceDTO(String creditName, float price, int productId, String href) {
         this.creditName = creditName;
         this.price = price;
         this.productId = productId;
+        this.href = href;
+    }
+
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
     }
 
     public String getCreditName() {

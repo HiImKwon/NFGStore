@@ -5,7 +5,6 @@
  */
 package demo.dao;
 
-import demo.dto.productDTO;
 import demo.dto.productPriceDTO;
 import demo.utils.DBUtilities;
 import java.io.Serializable;
@@ -21,19 +20,20 @@ import java.util.List;
  * @author Bui Quan
  */
 public class productPriceDAO implements Serializable {
-
-    public void insertProductPrice(float productPrice, int productId, String creditName)
+    
+    public void insertProductPrice(float productPrice, int productId, String creditName, String href)
             throws SQLException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement ptm = null;
         try {
             con = DBUtilities.makeConnection();
             if (con != null) {
-                String sql = "INSERT INTO tblProductPrice(price, productId, creditName) VALUES(?,?,?)";
+                String sql = "INSERT INTO tblProductPrice(price, productId, creditName, href) VALUES(?,?,?,?)";
                 ptm = con.prepareStatement(sql);
                 ptm.setFloat(1, productPrice);
                 ptm.setInt(2, productId);
-                ptm.setString(3, creditName);
+                ptm.setString(3, creditName);                
+                ptm.setString(4, href);
                 ptm.executeUpdate();
             }
         } finally {
@@ -45,7 +45,7 @@ public class productPriceDAO implements Serializable {
             }
         }
     }
-
+    
     public List<productPriceDTO> getProductPrice(int productId) throws SQLException {
         Connection con = null;
         PreparedStatement ptm = null;
@@ -54,15 +54,17 @@ public class productPriceDAO implements Serializable {
         try {
             con = DBUtilities.makeConnection();
             if (con != null) {
-                String sql = "SELECT price, creditName FROM tblProductPrice where productId=?";
+                String sql = "SELECT price, creditName, href FROM tblProductPrice where productId=?";
                 ptm = con.prepareStatement(sql);
                 ptm.setInt(1, productId);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     Float price = rs.getFloat("price");
                     String creditName = rs.getString("creditName");
+                    String href = rs.getString("href");
                     productPriceDTO dto = new productPriceDTO();
                     dto.setPrice(price);
+                    dto.setHref(href);
                     dto.setProductId(productId);
                     dto.setCreditName(creditName);
                     priceNCredit.add(dto);
