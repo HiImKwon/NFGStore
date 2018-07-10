@@ -48,9 +48,9 @@ public class categoryServlet extends HttpServlet {
 
         try {
             categoryDAO dao = new categoryDAO();
-            List<categoryDTO> dtoList = dao.getCategoryList();
-            categoryDTOs categories = new categoryDTOs(dtoList);
-            String xmlContent = XMLUtilities.JAXBMarshalling(categories);
+            List<categoryDTO> dtoListVN = dao.getCategoryListVN();
+            categoryDTOs categoriesVN = new categoryDTOs(dtoListVN);
+            String xmlContent = XMLUtilities.JAXBMarshalling(categoriesVN);
 
             HttpSession session = request.getSession();
             session.setAttribute("CATEGORIES", xmlContent);

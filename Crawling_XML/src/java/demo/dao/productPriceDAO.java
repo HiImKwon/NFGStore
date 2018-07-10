@@ -20,7 +20,7 @@ import java.util.List;
  * @author Bui Quan
  */
 public class productPriceDAO implements Serializable {
-    
+
     public void insertProductPrice(float productPrice, int productId, String creditName, String href)
             throws SQLException, ClassNotFoundException {
         Connection con = null;
@@ -32,7 +32,7 @@ public class productPriceDAO implements Serializable {
                 ptm = con.prepareStatement(sql);
                 ptm.setFloat(1, productPrice);
                 ptm.setInt(2, productId);
-                ptm.setString(3, creditName);                
+                ptm.setString(3, creditName);
                 ptm.setString(4, href);
                 ptm.executeUpdate();
             }
@@ -45,7 +45,66 @@ public class productPriceDAO implements Serializable {
             }
         }
     }
-    
+
+    public void updatePrice(Float price, String href, int productId, String creditName)
+            throws SQLException {
+        Connection con = null;
+        PreparedStatement ptm = null;
+        try {
+            con = DBUtilities.makeConnection();
+            if (con != null) {
+                String sql = "UPDATE tblProductPrice SET price = ?, href = ? WHERE productId = ? and creditName = ?";
+                ptm = con.prepareStatement(sql);
+                ptm.setFloat(1, price);
+                ptm.setString(2, href);
+                ptm.setInt(3, productId);
+                ptm.setString(4, creditName);
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+    public boolean checkExistence(int productId, String creditName) throws SQLException {
+        Connection con = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            con = DBUtilities.makeConnection();
+            if (con != null) {
+                String sql = "SELECT price FROM tblProductPrice where productId=? and creditName = ?";
+                ptm = con.prepareStatement(sql);
+                ptm.setInt(1, productId);
+                ptm.setString(2, creditName);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return false;
+    }
+
     public List<productPriceDTO> getProductPrice(int productId) throws SQLException {
         Connection con = null;
         PreparedStatement ptm = null;

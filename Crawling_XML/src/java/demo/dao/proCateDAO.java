@@ -43,6 +43,38 @@ public class proCateDAO implements Serializable {
         }
     }
 
+    public boolean checkExistence(int productId, int cateId) throws SQLException {
+        Connection con = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            con = DBUtilities.makeConnection();
+            if (con != null) {
+                String sql = "SELECT * from tblProduct_tblCategory where productId =? and categoryId = ?";
+                ptm = con.prepareStatement(sql);
+                ptm.setInt(1, productId);
+                ptm.setInt(2, cateId);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return false;
+    }
+
     public List<Integer> getCategory(int productId) throws SQLException {
         Connection con = null;
         PreparedStatement ptm = null;

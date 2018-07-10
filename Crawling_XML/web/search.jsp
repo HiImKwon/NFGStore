@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,15 +32,9 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="#">Action</a>
-                        <a href="#">Adventure</a>
-                        <a href="#">Casual</a>
-                        <a href="#">Indie</a>
-                        <a href="#">RPG</a>
-                        <a href="#">Simulation</a>
-                        <a href="#">Sport</a>
-                        <a href="#">Strategy</a>
-                        <a href="#">Racing</a>
+                        <c:set var="categoriesXmlString" value="${sessionScope.CATEGORIES}"/>
+                        <c:import charEncoding="UTF-8" url="category-list.xsl" var="categoryDoc"/>
+                        <x:transform doc="${categoriesXmlString}" xslt="${categoryDoc}"/>
                     </div>
                 </div>
                 <div class="child">

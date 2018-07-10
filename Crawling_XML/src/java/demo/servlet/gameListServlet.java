@@ -61,7 +61,7 @@ public class gameListServlet extends HttpServlet {
         productPriceDAO priceDAO = new productPriceDAO();
         productDAO proDAO = new productDAO();
         categoryDAO cateDAO = new categoryDAO();
-        String cateName = cateDAO.getNameCategory(category).toUpperCase();
+        String cateNameVN = cateDAO.getNameCategoryVN(category).toUpperCase();
         try {
 
             if (pagination == 0) {
@@ -70,7 +70,7 @@ public class gameListServlet extends HttpServlet {
                 pagination = pagination + 1;
             }
             List<Integer> productsIdList = productCategoryDAO.getGamesId(category);
-            for (int i = 0; i < (pagination * 12); i++) {
+            for (int i = ((pagination - 1) * 12 + 1); i < ((pagination - 1) * 12 + 1 + 12); i++) {
                 productDisplay tmpProduct = proDAO.getProductDisplay(productsIdList.get(i));
                 List<productPriceDTO> priceList = priceDAO.getProductPrice(productsIdList.get(i));
                 tmpProduct.setPrices(priceList);
@@ -96,7 +96,7 @@ public class gameListServlet extends HttpServlet {
             String xmlProducts = XMLUtilities.JAXBMarshalling(wrapper);
             request.setAttribute("category", category);
             request.setAttribute("PRODUCTS", xmlProducts);
-            request.setAttribute("CATENAME", cateName);
+            request.setAttribute("CATENAME", cateNameVN);
             request.setAttribute("PAGINATION", pagination);
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

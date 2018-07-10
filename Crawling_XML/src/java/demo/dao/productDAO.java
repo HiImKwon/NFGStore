@@ -47,6 +47,35 @@ public class productDAO implements Serializable {
         }
     }
 
+    
+
+    public void updateProduct(String href, String avaUrl, String productName, int id)
+            throws SQLException {
+        Connection con = null;
+        PreparedStatement ptm = null;
+        try {
+            con = DBUtilities.makeConnection();
+            if (con != null) {
+                String sql = "UPDATE tblProduct SET href = ?,avatarUrl = ?, productName = ? WHERE id= ?";
+                ptm = con.prepareStatement(sql);
+                ptm.setString(1, href);
+                ptm.setString(2, avaUrl);
+                ptm.setString(3, productName);
+                ptm.setInt(4, id);
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
     public int getProductId(String productName)
             throws ClassNotFoundException, SQLException {
         Connection con = null;

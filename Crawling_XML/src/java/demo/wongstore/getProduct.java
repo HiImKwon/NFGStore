@@ -85,10 +85,10 @@ public class getProduct extends Thread {
                 //replace "%20" if cateString contain space
                 //get pageCount
                 if (cateString.contains(" ")) {
-                    crawler.parseHTML("http://wongstore.com/theloai/" + cateString.replace(" ", "%20"),
+                    crawler.parseHTML("http://wongstore.com/theloai/" + cateString.replaceAll("\\s", "%20"),
                             "<div class=\"container product\">",
                             "</section>",
-                            "href=\"http://wongstore.com/theloai/" + cateString.replace(" ", "%20") + "?page=");
+                            "href=\"http://wongstore.com/theloai/" + cateString.replaceAll("\\s", "%20") + "?page=");
                 } else {
                     crawler.parseHTML("http://wongstore.com/theloai/" + cateString,
                             "<div class=\"container product\">",
@@ -102,12 +102,12 @@ public class getProduct extends Thread {
                     if (isInterupt == true) {
                         break;
                     }
-                    crawler.parseHTML("http://wongstore.com/theloai/" + cateString + "?page=" + j,
+                    crawler.parseHTML("http://wongstore.com/theloai/" + cateString.replaceAll("\\s", "%20") + "?page=" + j,
                             "<div class=\"container product\">",
                             "</section>",
                             "");
                     String realPath = context.getRealPath("/");
-                    String product = xmlUtils.crawler(crawler.inUseHTML, realPath + "Product.xsl");
+                    String product = xmlUtils.crawler(Crawler.inUseHTML, realPath + "Product.xsl");
 
                     InputStream inputStream = new ByteArrayInputStream(product.toString().getBytes());
                     Products products = (Products) xmlUtils.JAXBUnmarshalling(inputStream, Products.class);

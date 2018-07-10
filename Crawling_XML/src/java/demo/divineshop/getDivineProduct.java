@@ -37,8 +37,14 @@ public class getDivineProduct {
                 if (dto != null) {
                     float price = convertPrice(dto.getPrice());
                     if (price != -99) {
-                        priceDAO.insertProductPrice(price, id, dto.getCreditName(), dto.getHref());
-                        System.out.println("insert divine price successful");
+                        if (!priceDAO.checkExistence(id, dto.getCreditName())) {
+                            priceDAO.insertProductPrice(price, id, dto.getCreditName(), dto.getHref());
+                            System.out.println("insert divine price successful");
+                        } else {
+                            priceDAO.updatePrice(price, dto.getHref(), id, dto.getCreditName());
+                            System.out.println("update divine price successful");
+                        }
+
                     }
                 }
             }

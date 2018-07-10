@@ -22,9 +22,19 @@ public class productPriceToDB {
             productDAO proDAO = new productDAO();
             productPriceDAO priceDAO = new productPriceDAO();
             for (int i = 0; i < productList.size(); i++) {
-                float price = convertToFloat(productList.get(i).getPrice());
+                Float price = convertToFloat(productList.get(i).getPrice());
                 int id = proDAO.getProductId(productList.get(i).getProductName());
-                priceDAO.insertProductPrice(price, id, productList.get(i).getCreditName(),productList.get(i).getHref());
+                if (price != -99) {
+                    //true means already exist
+                    if (priceDAO.checkExistence(id, productList.get(i).getCreditName())) {
+                        priceDAO.updatePrice(price, productList.get(i).getHref(), id, productList.get(i).getCreditName());
+                        System.out.println("update price successful");
+                    } else {
+                        priceDAO.insertProductPrice(price, id, productList.get(i).getCreditName(), productList.get(i).getHref());
+                        System.out.println("insert price");
+                    }
+                }
+
             }
         }
     }
@@ -35,13 +45,17 @@ public class productPriceToDB {
 
         //replace from vietnam standard to global standard in currency
         price = price.replaceAll(",", "\\.");
-        
 
         //eliminate VND currency
-        price = price.replace("VNĐ", "");    
+        price = price.replace("VNĐ", "");
         price = price.replace("VN?", "");
         price = price.trim();
 
-        return new Float(Float.parseFloat(price));
+        if (price.equals("")) {
+            return -99;
+        } else {
+            return new Float(Float.parseFloat(price));
+
+        }
     }
 }

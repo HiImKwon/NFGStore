@@ -20,8 +20,16 @@ public class productToDB {
         if (productList != null) {
             productDAO dao = new productDAO();
             for (int i = 0; i < productList.size(); i++) {
-                dao.insertToDB(productList.get(i).getProductName(), productList.get(i).getAvaUrl(), productList.get(i).getHref());
-                System.out.println("insert product successful");
+                int id = dao.getProductId(productList.get(i).getProductName());
+                if (id != -99) {
+                    dao.updateProduct(productList.get(i).getHref(), productList.get(i).getAvaUrl(), productList.get(i).getProductName(), id);
+                    System.out.println("update product successful");
+
+                } else {
+                    dao.insertToDB(productList.get(i).getProductName(), productList.get(i).getAvaUrl(), productList.get(i).getHref());
+                    System.out.println("insert product successful");
+                }
+
             }
         }
     }
