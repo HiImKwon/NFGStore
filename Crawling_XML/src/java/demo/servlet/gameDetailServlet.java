@@ -10,6 +10,7 @@ import demo.dao.productPriceDAO;
 import demo.dto.productDisplay;
 import demo.dto.productDisplays;
 import demo.dto.productPriceDTO;
+import demo.utils.ConvertFloatToStringPrice;
 import demo.utils.XMLUtilities;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Bui Quan
  */
 public class gameDetailServlet extends HttpServlet {
-
+    
     private String url = "detail.jsp";
 
     /**
@@ -55,6 +56,12 @@ public class gameDetailServlet extends HttpServlet {
         List<productPriceDTO> priceList = new ArrayList<productPriceDTO>();
         try {
             priceList = priceDAO.getProductPrice(productId);
+            //convert price to String 
+            ConvertFloatToStringPrice floatToStringPrice = new ConvertFloatToStringPrice();
+            for (int k = 0; k < priceList.size(); k++) {
+                String priceString = floatToStringPrice.convertToStringCheapestPrice(priceList.get(k).getPrice());
+                priceList.get(k).setPriceString(priceString);
+            }
             product = proDAO.getProductDisplay(productId);
             product.setPrices(priceList);
             float cheapestPrice = 0;
@@ -67,18 +74,22 @@ public class gameDetailServlet extends HttpServlet {
                     }
                     if (cheapestPrice > priceList.get(i).getPrice()) {
                         cheapestPrice = priceList.get(i).getPrice();
-
+                        
                     }
                 }
             }
             product.setCheapestPrice(cheapestPrice);
+            //convert cheapestPrice to String
+            ConvertFloatToStringPrice convertFloatString = new ConvertFloatToStringPrice();
+            product.setCheapestPriceString(convertFloatString.convertToStringCheapestPrice(product.getCheapestPrice()));
             List<productDisplay> tmp = new ArrayList<productDisplay>();
             tmp.add(product);
+            
             productDisplays wrapper = new productDisplays(tmp);
             String xmlContent = XMLUtilities.JAXBMarshalling(wrapper);
             request.setAttribute("PRODUCT", xmlContent);
             request.setAttribute("NAME", productName);
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

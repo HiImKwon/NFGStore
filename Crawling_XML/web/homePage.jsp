@@ -119,10 +119,10 @@
                     </div>
                     <div>
                         <div class="big-title">
-                            mới update
+                            update hoài
                         </div>
                         <div class="small-title">
-                            cập nhật
+                            cập nhật suốt
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                     </div>
                     <div>
                         <div class="big-title">
-                            đang sale
+                            sale mãi
                         </div>
                         <div class="small-title">
                             lên đến 90%
@@ -142,25 +142,40 @@
             </div>
 
             <!-- search bar -->
-            <div class="search">
-                <div class="drop-down">
-                    <button class="btn">
-                        Bộ lọc
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                </div>
-                <input id="inputFilter" type="text" placeholder="Tìm game bạn muốn xem giá ....">
-                <button id="btnFilter">Tìm kiếm</button>
-            </div>
+            <form action="searchServlet">
+                <div class="search">
+                    <div class="drop-down">
+                        <button class="btn">
+                            Bộ lọc
+                            <i class="fa fa-caret-down"></i>
+                        </button>
 
+                        <div class="dropdown-content">
+                            <c:set var="categoriesXmlString" value="${sessionScope.CATEGORIES}"/>
+                            <c:import charEncoding="UTF-8" url="filter-list.xsl" var="categoryDoc"/>
+                            <x:transform doc="${categoriesXmlString}" xslt="${categoryDoc}"/>
+                        </div>
+                        <%-- <select name="txtFilter" class="dropdown-content">
+                             <c:set var="categoriesXmlString" value="${sessionScope.CATEGORIES}"/>
+                             <c:import charEncoding="UTF-8" url="filter-list.xsl" var="categoryDoc"/>
+                             <x:transform doc="${categoriesXmlString}" xslt="${categoryDoc}"/>
+                         </select>
+                        --%>
+                    </div>
+
+                    <input id="inputFilter" name="txtSearch" type="text" placeholder="Tìm game bạn muốn xem giá ....">
+                    <button type="submit" id="btnFilter">Tìm kiếm</button>
+
+                </div>
+            </form>
             <!-- slide show -->
             <div class="slide-show">
                 <img class="mySlideImg" src="img/0eVoz_ok1.jpg" alt="" />
                 <img class="mySlideImg" src="img/2gmab_XRZ1Y_coop.png" alt="" />
                 <img class="mySlideImg" src="img/RlzLt_Counter-Strike_Global_Offensive.png" alt="" />
                 <img class="mySlideImg" src="img/uqCUo_tf_logo.png" alt="" />
-                <img class="mySlideImg" src="img/garena-banner-824x470.png" alt="">
-                <img class="mySlideImg" src="img/mFqK5_2151.png" alt="">
+                <img class="mySlideImg" src="img/garena-banner-824x470.png" alt=""/>
+                <img class="mySlideImg" src="img/mFqK5_2151.png" alt=""/>
             </div>
 
             <!-- sort bar -->
@@ -173,9 +188,9 @@
                         <img src="logo/light-bulb.png" alt="">
                     </div>
                 </div>
-<!--                <div class="more-info">
-                    Xem thêm
-                </div>-->
+                <!--                <div class="more-info">
+                                    Xem thêm
+                                </div>-->
             </div>
 
             <!-- update-items -->
@@ -233,9 +248,9 @@
                         <img src="logo/fire.png" alt="">
                     </div>
                 </div>
-<!--                <div class="more-info">
-                    Xem thêm
-                </div>-->
+                <!--                <div class="more-info">
+                                    Xem thêm
+                                </div>-->
             </div>
 
             <!-- update-items -->
@@ -287,15 +302,15 @@
         <div class="ending-div">
             <div class="information">
                 <b>Thông tin</b>
-                <br/> This is not a commercial version.
-                <br/> This project is dedicated to Dr. KhanhKT.
-                <br/> PRX301's Assignment.
+                <br/> Đây không phải là phiên bản thương mại.
+                <br/> Trang web này dành cho thầy KhanhKT.
+                <br/> Bài tập môn PRX301.
             </div>
             <div class="contact">
                 <b>Liên hệ</b>
                 <br/> QuanBKMSE62170
                 <br/> Email: quanbkmse62170@fpt.edu.vn
-                <br/> Address: FPT University HCM
+                <br/> Địa chỉ: Đại học FPT HCM
             </div>
             <div class="end-logo">
                 <img src="logo/logo2.png" alt="">
@@ -306,7 +321,6 @@
             <p>© 2018 NFG's Store. Bản quyền nội dung thuộc quyền sở hửu của NFG's Store.</p>
         </div>
         <script src="slideshow.js"></script>
-        <script src="js.js"></script>
     </body>
 
 </html>

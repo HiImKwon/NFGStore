@@ -189,6 +189,21 @@
     padding-bottom: 26%;
 }
 
+.drop-down > .dropdown-content{
+    display: none;
+    position: absolute;
+    top: 103%;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.drop-down:hover > .dropdown-content{
+    display: block;
+}
+
 #inputFilter{
     width: 64.5%;
     height: 48px;

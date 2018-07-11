@@ -22,7 +22,8 @@ import javax.xml.bind.annotation.XmlType;
     "avaUrl",
     "href",
     "prices",
-    "cheapestPrice"
+    "cheapestPrice",
+    "cheapestPriceString"
 })
 public class productDisplay implements Serializable {
 
@@ -36,6 +37,8 @@ public class productDisplay implements Serializable {
     private List<productPriceDTO> prices;
     @XmlElement
     private float cheapestPrice;
+    @XmlElement
+    private String cheapestPriceString;
 
     public productDisplay() {
     }
@@ -46,6 +49,14 @@ public class productDisplay implements Serializable {
         this.href = href;
         this.prices = prices;
         this.cheapestPrice = cheapestPrice;
+    }
+
+    public String getCheapestPriceString() {
+        return cheapestPriceString;
+    }
+
+    public void setCheapestPriceString(String cheapestPriceString) {
+        this.cheapestPriceString = cheapestPriceString;
     }
 
     public float getCheapestPrice() {
@@ -68,7 +79,6 @@ public class productDisplay implements Serializable {
         return prices;
     }
 
-
     public String getProductName() {
         return productName;
     }
@@ -84,7 +94,6 @@ public class productDisplay implements Serializable {
     public void setPrices(List<productPriceDTO> prices) {
         this.prices = prices;
     }
-
 
     public void setProductName(String productName) {
         this.productName = productName;

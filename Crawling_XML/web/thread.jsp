@@ -75,18 +75,18 @@
         <div class="ending-div">
             <div class="information">
                 <b>Thông tin</b>
-                <br/> This is not a commercial version.
-                <br/> This project is dedicated to Dr. KhanhKT.
-                <br/> PRX301's Assignment.
+                <br/> Đây không phải là phiên bản thương mại.
+                <br/> Trang web này dành cho thầy KhanhKT.
+                <br/> Bài tập môn PRX301.
             </div>
             <div class="contact">
                 <b>Liên hệ</b>
                 <br/> QuanBKMSE62170
                 <br/> Email: quanbkmse62170@fpt.edu.vn
-                <br/> Address: FPT University HCM
+                <br/> Địa chỉ: Đại học FPT HCM
             </div>
             <div class="end-logo">
-                <img src="logo/logo.png" alt="">
+                <img src="logo/logo2.png" alt="">
             </div>
         </div>
         <!-- copyright -->

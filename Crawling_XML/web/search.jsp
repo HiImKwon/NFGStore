@@ -112,10 +112,10 @@
                     </div>
                     <div>
                         <div class="big-title">
-                            mới update
+                            update hoài
                         </div>
                         <div class="small-title">
-                            cập nhật
+                            cập nhật suốt
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                     </div>
                     <div>
                         <div class="big-title">
-                            đang sale
+                            sale mãi
                         </div>
                         <div class="small-title">
                             lên đến 90%
@@ -135,33 +135,57 @@
             </div>
 
             <!-- search bar -->
-            <div class="search">
-                <div class="drop-down">
-                    <button class="btn">
-                        Bộ lọc
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                </div>
-                <input id="inputFilter" type="text" placeholder="Tìm game bạn muốn xem giá ....">
-                <button id="btnFilter">Tìm kiếm</button>
-            </div>
+            <form action="searchServlet">
+                <div class="search">
+                    <div class="drop-down">
+                        <button class="btn">
+                            Bộ lọc
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <select name="txtFilter" class="dropdown-content">
+                            <c:set var="categoriesXmlString" value="${sessionScope.CATEGORIES}"/>
+                            <c:import charEncoding="UTF-8" url="filter-list.xsl" var="categoryDoc"/>
+                            <x:transform doc="${categoriesXmlString}" xslt="${categoryDoc}"/>
+                        </select>
+                    </div>
 
-            <!-- sort bar -->
+                    <input id="inputFilter" name="txtSearch" type="text" placeholder="Tìm game bạn muốn xem giá ....">
+                    <button type="submit" id="btnFilter">Tìm kiếm</button>
+
+                </div>
+            </form>
+
+            <!-- keyword title -->
             <div class="sort-bar">
                 <div class="title-icon">
                     <div class="sort-bar-title">
-                        <b>GAME HOT</b>
+                        <b><c:out value="${requestScope.KEYWORD}"/></b>
                     </div>
                     <div class="icon">
                         <img src="logo/fire.png" alt="">
                     </div>
                 </div>
-                <!-- <div class="more-info">
-                    Xem thêm
-                </div> -->
+                <!--                <button class="more-info">
+                                    Xem thêm
+                                </button>-->
             </div>
-            <!-- content -->
 
+
+            <!-- list of search products -->
+            <div class="update-items">
+                <c:set var="mess" value="${requestScope.EMPTY}"/>
+                <c:if test="${empty mess}">
+                    <div class="update-row-one">
+                        <c:set var="searchProductXMLString" value="${requestScope.SEARCHRESULT}"/>
+                        <c:import charEncoding="UTF-8" url="products-top-list.xsl" var="proDoc"/>
+                        <x:transform doc="${searchProductXMLString}" xslt="${proDoc}"/>
+                    </div>
+                </c:if>
+                <c:if test="${not empty mess}">
+                    <h1><c:out value="${mess}"/></h1>
+                </c:if>
+
+            </div>
 
 
 
@@ -170,15 +194,15 @@
         <div class="ending-div">
             <div class="information">
                 <b>Thông tin</b>
-                <br/> This is not a commercial version.
-                <br/> This project is dedicated to Dr. KhanhKT.
-                <br/> PRX301's Assignment.
+                <br/> Đây không phải là phiên bản thương mại.
+                <br/> Trang web này dành cho thầy KhanhKT.
+                <br/> Bài tập môn PRX301.
             </div>
             <div class="contact">
                 <b>Liên hệ</b>
                 <br/> QuanBKMSE62170
                 <br/> Email: quanbkmse62170@fpt.edu.vn
-                <br/> Address: FPT University HCM
+                <br/> Địa chỉ: Đại học FPT HCM
             </div>
             <div class="end-logo">
                 <img src="logo/logo2.png" alt="">

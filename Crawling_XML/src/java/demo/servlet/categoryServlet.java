@@ -30,7 +30,6 @@ import javax.xml.bind.JAXBException;
 public class categoryServlet extends HttpServlet {
 
     private String url = "productHomePageServlet";
-    private String slideShowServlet = "slideShowServlet";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

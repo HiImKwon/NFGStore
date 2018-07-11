@@ -12,6 +12,7 @@ import demo.dao.productPriceDAO;
 import demo.dto.productDisplay;
 import demo.dto.productDisplays;
 import demo.dto.productPriceDTO;
+import demo.utils.ConvertFloatToStringPrice;
 import demo.utils.XMLUtilities;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -88,6 +89,9 @@ public class gameListServlet extends HttpServlet {
                     }
                     tmpProduct.setCheapestPrice(cheapestPrice);
                 }
+                //convert cheapestPrice to String
+                ConvertFloatToStringPrice convertFloatString = new ConvertFloatToStringPrice();
+                tmpProduct.setCheapestPriceString(convertFloatString.convertToStringCheapestPrice(tmpProduct.getCheapestPrice()));
                 productList.add(tmpProduct);
             }
 

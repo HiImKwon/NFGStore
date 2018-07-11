@@ -39,38 +39,40 @@
                     </div>
                 </div>
                 <div class="child">
-                    <button class="dropbtn">Nhà phát hành
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#">Origin</a>
-                        <a href="#">Uplay</a>
-                        <a href="#">Steam</a>
-                        <a href="#">Battle.net</a>
-                    </div>
+                    <!--                    <button class="dropbtn">Nhà phát hành
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Origin</a>
+                                            <a href="#">Uplay</a>
+                                            <a href="#">Steam</a>
+                                            <a href="#">Battle.net</a>
+                                        </div>-->
                 </div>
                 <div class="child">
-                    <button class="dropbtn">Wallet code
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#">Steam code wallet 5$</a>
-                        <a href="#">Steam code wallet 10$</a>
-                        <a href="#">Steam code wallet 20$</a>
-                        <a href="#">Steam code wallet 50$</a>
-                        <a href="#">Steam code wallet 15$</a>
-                        <a href="#">Steam code wallet 100$</a>
-                        <a href="#">Steam Code Random Game</a>
-                    </div>
+                    <!--                    <button class="dropbtn">Wallet code
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Steam code wallet 5$</a>
+                                            <a href="#">Steam code wallet 10$</a>
+                                            <a href="#">Steam code wallet 20$</a>
+                                            <a href="#">Steam code wallet 50$</a>
+                                            <a href="#">Steam code wallet 15$</a>
+                                            <a href="#">Steam code wallet 100$</a>
+                                            <a href="#">Steam Code Random Game</a>
+                                        </div>-->
                 </div>
                 <div class="child">
                     <div>
                         Crawl:
                     </div>
                     <div>
-                        <button>
-                            Click here
-                        </button>
+                        <form action="thread.jsp">
+                            <button>
+                                Click here
+                            </button>
+                        </form>
                     </div>
                     <!-- <input type="text" placeholder="Tìm kiếm">
         <button type="submit"><i class="fas fa-search"></i></button> -->
@@ -134,16 +136,25 @@
             </div>
 
             <!-- search bar -->
-            <div class="search">
-                <div class="drop-down">
-                    <button class="btn">
-                        Bộ lọc
-                        <i class="fa fa-caret-down"></i>
-                    </button>
+            <form action="searchServlet">
+                <div class="search">
+                    <div class="drop-down">
+                        <button class="btn">
+                            Bộ lọc
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <select name="txtFilter" class="dropdown-content">
+                            <c:set var="categoriesXmlString" value="${sessionScope.CATEGORIES}"/>
+                            <c:import charEncoding="UTF-8" url="filter-list.xsl" var="categoryDoc"/>
+                            <x:transform doc="${categoriesXmlString}" xslt="${categoryDoc}"/>
+                        </select>
+                    </div>
+
+                    <input id="inputFilter" name="txtSearch" type="text" placeholder="Tìm game bạn muốn xem giá ....">
+                    <button type="submit" id="btnFilter">Tìm kiếm</button>
+
                 </div>
-                <input id="inputFilter" type="text" placeholder="Tìm game bạn muốn xem giá ....">
-                <button id="btnFilter">Tìm kiếm</button>
-            </div>
+            </form>
 
             <!-- from this, using detail.css -->
 
@@ -191,7 +202,7 @@
                     var xmlDoc = parser.parseFromString(product, "text/xml");
                     var productXMLString = xmlDoc.getElementsByTagName("productList")[0];
                     var avaUrl = productXMLString.getElementsByTagName("avaUrl")[0].childNodes[0].textContent;
-                    var cheapestPrice = productXMLString.getElementsByTagName("cheapestPrice")[0].childNodes[0].textContent;
+                    var cheapestPrice = productXMLString.getElementsByTagName("cheapestPriceString")[0].childNodes[0].textContent;
                     var prices = productXMLString.getElementsByTagName("prices");
 
                     var gamePicture = document.createElement("div");
@@ -214,7 +225,7 @@
                     for (var i = 0; i < prices.length; i++) {
 
                         var creditName = prices[i].getElementsByTagName("creditName")[0].childNodes[0].textContent;
-                        var price = prices[i].getElementsByTagName("price")[0].childNodes[0].textContent;
+                        var price = prices[i].getElementsByTagName("priceString")[0].childNodes[0].textContent;
                         var href = prices[i].getElementsByTagName("href")[0].childNodes[0].textContent;
 
                         var linkPriceContainer = document.createElement("div");
@@ -247,15 +258,15 @@
         <div class="ending-div">
             <div class="information">
                 <b>Thông tin</b>
-                <br/> This is not a commercial version.
-                <br/> This project is dedicated to Dr. KhanhKT.
-                <br/> PRX301's Assignment.
+                <br/> Đây không phải là phiên bản thương mại.
+                <br/> Trang web này dành cho thầy KhanhKT.
+                <br/> Bài tập môn PRX301.
             </div>
             <div class="contact">
                 <b>Liên hệ</b>
                 <br/> QuanBKMSE62170
                 <br/> Email: quanbkmse62170@fpt.edu.vn
-                <br/> Address: FPT University HCM
+                <br/> Địa chỉ: Đại học FPT HCM
             </div>
             <div class="end-logo">
                 <img src="logo/logo2.png" alt="">

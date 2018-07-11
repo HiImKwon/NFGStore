@@ -10,6 +10,7 @@ import demo.dao.productPriceDAO;
 import demo.dto.productDisplay;
 import demo.dto.productDisplays;
 import demo.dto.productPriceDTO;
+import demo.utils.ConvertFloatToStringPrice;
 import demo.utils.XMLUtilities;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -85,6 +86,11 @@ public class productHomePageServlet extends HttpServlet {
                     //add to that product
                     firstProducts.get(i).setCheapestPrice(cheapestPrice);
                 }
+
+                //convert cheapestPrice to String
+                ConvertFloatToStringPrice convertFloatString = new ConvertFloatToStringPrice();
+                firstProducts.get(i).setCheapestPriceString(convertFloatString.convertToStringCheapestPrice(firstProducts.get(i).getCheapestPrice()));
+
             }
             //add to a wrapper
             productDisplays firstWrapper = new productDisplays(firstProducts);
@@ -121,6 +127,10 @@ public class productHomePageServlet extends HttpServlet {
                     //add to that product
                     secondProducts.get(i).setCheapestPrice(cheapestPrice);
                 }
+
+                //convert cheapestPrice to String
+                ConvertFloatToStringPrice convertFloatString = new ConvertFloatToStringPrice();
+                secondProducts.get(i).setCheapestPriceString(convertFloatString.convertToStringCheapestPrice(secondProducts.get(i).getCheapestPrice()));
             }
             //add to a wrapper
             productDisplays secondWrapper = new productDisplays(secondProducts);

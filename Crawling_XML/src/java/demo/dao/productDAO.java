@@ -47,8 +47,6 @@ public class productDAO implements Serializable {
         }
     }
 
-    
-
     public void updateProduct(String href, String avaUrl, String productName, int id)
             throws SQLException {
         Connection con = null;
@@ -74,6 +72,84 @@ public class productDAO implements Serializable {
                 con.close();
             }
         }
+    }
+
+    public List<productDisplay> searchProducts(String keyword) throws SQLException {
+        Connection con = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        List<productDisplay> resultList = new ArrayList<productDisplay>();
+        try {
+            con = DBUtilities.makeConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM tblProduct WHERE productName LIKE ?";
+                ptm = con.prepareStatement(sql);
+                ptm.setString(1, "%" + keyword + "%");
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    productDisplay tmp = new productDisplay();
+                    String productName = rs.getString("productName");
+                    String avaUrl = rs.getString("avatarUrl");
+                    String href = rs.getString("href");
+                    tmp.setAvaUrl(avaUrl);
+                    tmp.setHref(href);
+                    tmp.setProductName(productName);
+                    resultList.add(tmp);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return resultList;
+    }
+
+    public productDisplay searchProductsWithId(String keyword, int id) throws SQLException {
+        Connection con = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        productDisplay result = new productDisplay();
+        try {
+            con = DBUtilities.makeConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM tblProduct where id=? and productName like ?";
+                ptm = con.prepareStatement(sql);
+                ptm.setInt(1, id);
+                ptm.setString(2, "%" + keyword + "%");
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    String productName = rs.getString("productName");
+                    String avaUrl = rs.getString("avatarUrl");
+                    String href = rs.getString("href");
+                    result.setAvaUrl(avaUrl);
+                    result.setHref(href);
+                    result.setProductName(productName);
+                    return result;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return null;
     }
 
     public int getProductId(String productName)

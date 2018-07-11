@@ -20,7 +20,8 @@ import javax.xml.bind.annotation.XmlType;
     "creditName",
     "price",
     "productId",
-    "href"
+    "href",
+    "priceString"
 })
 public class productPriceDTO implements Serializable {
 
@@ -32,6 +33,8 @@ public class productPriceDTO implements Serializable {
     private int productId;
     @XmlElement
     private String href;
+    @XmlElement
+    private String priceString;
 
     public productPriceDTO() {
     }
@@ -41,6 +44,14 @@ public class productPriceDTO implements Serializable {
         this.price = price;
         this.productId = productId;
         this.href = href;
+    }
+
+    public String getPriceString() {
+        return priceString;
+    }
+
+    public void setPriceString(String priceString) {
+        this.priceString = priceString;
     }
 
     public String getHref() {

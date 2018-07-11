@@ -19,13 +19,13 @@
 
     <xsl:template match="ns:productDisplays">
         <xsl:for-each select="ns:productList">
-            <div>
+            <div style="width: 296px;">
                 <a class="display-product" href="http://localhost:8084/Crawling_XML/gameDetailServlet?productName={ns:productName}">
-                    <div class="img">
+                    <div style="width: 296px;height: 138px;" class="img">
                         <img src="{ns:avaUrl}" alt="{ns:productName}"/>
                     </div>
                     <div class="price">
-                        <xsl:value-of select="ns:cheapestPrice"/>
+                        <xsl:value-of select="ns:cheapestPriceString"/>
                     </div>
                 </a>
             </div>
