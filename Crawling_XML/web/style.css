@@ -174,16 +174,19 @@
 .drop-down{
     position: absolute;
     top: 0;
-    left: 0;
+    left: 12px;
 }
 .drop-down > .btn{
+    align-items: center;
+    justify-content: center;
+    display: flex;
     outline: none;
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
     border: none;
-    padding-top: 26%;
+    padding-top: 35%;
     cursor: pointer;
-    padding-bottom: 26%;
+    
 }
 
 .drop-down > .dropdown-content{
@@ -234,6 +237,9 @@
     right: 0;
     width: 120px;
     height: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
     background: #02B1F2;
     color: #fff;
     font-size: 16px;

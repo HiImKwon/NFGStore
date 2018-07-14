@@ -142,32 +142,29 @@
             </div>
 
             <!-- search bar -->
-            <form action="searchServlet">
-                <div class="search">
-                    <div class="drop-down">
-                        <button class="btn">
-                            Bộ lọc
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-
-                        <div class="dropdown-content">
-                            <c:set var="categoriesXmlString" value="${sessionScope.CATEGORIES}"/>
-                            <c:import charEncoding="UTF-8" url="filter-list.xsl" var="categoryDoc"/>
-                            <x:transform doc="${categoriesXmlString}" xslt="${categoryDoc}"/>
-                        </div>
-                        <%-- <select name="txtFilter" class="dropdown-content">
-                             <c:set var="categoriesXmlString" value="${sessionScope.CATEGORIES}"/>
-                             <c:import charEncoding="UTF-8" url="filter-list.xsl" var="categoryDoc"/>
-                             <x:transform doc="${categoriesXmlString}" xslt="${categoryDoc}"/>
-                         </select>
-                        --%>
+            <div class="search">
+                <div class="drop-down">
+                    <div class="btn" id="filter">
+                        Bộ lọc
+                        <i class="fa fa-caret-down"></i>
                     </div>
 
-                    <input id="inputFilter" name="txtSearch" type="text" placeholder="Tìm game bạn muốn xem giá ....">
-                    <button type="submit" id="btnFilter">Tìm kiếm</button>
-
+                    <div class="dropdown-content">
+                        <c:set var="filterXmlString" value="${sessionScope.CATEGORIES}"/>
+                        <c:import charEncoding="UTF-8" url="filter-list.xsl" var="filterDoc"/>
+                        <x:transform doc="${filterXmlString}" xslt="${filterDoc}"/>
+                    </div>
+                    <%-- <select name="txtFilter" class="dropdown-content">
+                         <c:set var="categoriesXmlString" value="${sessionScope.CATEGORIES}"/>
+                         <c:import charEncoding="UTF-8" url="filter-list.xsl" var="categoryDoc"/>
+                         <x:transform doc="${categoriesXmlString}" xslt="${categoryDoc}"/>
+                     </select>
+                    --%>
                 </div>
-            </form>
+                <input id="inputFilter" name="txtSearch" type="text" placeholder="Tìm game bạn muốn xem giá ....">
+                <div onclick="filterSearch()" id="btnFilter">Tìm kiếm</div>
+            </div>
+
             <!-- slide show -->
             <div class="slide-show">
                 <img class="mySlideImg" src="img/0eVoz_ok1.jpg" alt="" />
@@ -321,6 +318,7 @@
             <p>© 2018 NFG's Store. Bản quyền nội dung thuộc quyền sở hửu của NFG's Store.</p>
         </div>
         <script src="slideshow.js"></script>
+        <script src="filter.js"></script>
     </body>
 
 </html>

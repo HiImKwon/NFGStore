@@ -22,7 +22,7 @@
 
     <xsl:template match="ns:categoryDTOs">
         <xsl:for-each select="ns:category">
-            <div onclick="filterSearch({ns:id})">
+            <div onclick="getFilter({ns:id},'{ns:cateName}')">
                 <xsl:value-of select="ns:cateName"/>
             </div>
             <!--            <option value="{ns:id}">

@@ -276,6 +276,7 @@
         <div class="copyright">
             <p>© 2018 NFG's Store. Bản quyền nội dung thuộc quyền sở hửu của NFG's Store.</p>
         </div>
+        <script src="filter.js"/>
     </body>
 
 </html>
