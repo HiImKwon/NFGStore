@@ -146,6 +146,12 @@
                         <c:import charEncoding="UTF-8" url="filter-list.xsl" var="filterDoc"/>
                         <x:transform doc="${filterXmlString}" xslt="${filterDoc}"/>
                     </div>
+                    <%-- <select name="txtFilter" class="dropdown-content">
+                         <c:set var="categoriesXmlString" value="${sessionScope.CATEGORIES}"/>
+                         <c:import charEncoding="UTF-8" url="filter-list.xsl" var="categoryDoc"/>
+                         <x:transform doc="${categoriesXmlString}" xslt="${categoryDoc}"/>
+                     </select>
+                    --%>
                 </div>
                 <input id="inputFilter" name="txtSearch" type="text" placeholder="Tìm game bạn muốn xem giá ....">
                 <div onclick="filterSearch()" id="btnFilter">Tìm kiếm</div>

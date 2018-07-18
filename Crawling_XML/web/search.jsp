@@ -38,29 +38,29 @@
                     </div>
                 </div>
                 <div class="child">
-                    <button class="dropbtn">Nhà phát hành
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#">Origin</a>
-                        <a href="#">Uplay</a>
-                        <a href="#">Steam</a>
-                        <a href="#">Battle.net</a>
-                    </div>
+                    <!--                    <button class="dropbtn">Nhà phát hành
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Origin</a>
+                                            <a href="#">Uplay</a>
+                                            <a href="#">Steam</a>
+                                            <a href="#">Battle.net</a>
+                                        </div>-->
                 </div>
                 <div class="child">
-                    <button class="dropbtn">Wallet code
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#">Steam code wallet 5$</a>
-                        <a href="#">Steam code wallet 10$</a>
-                        <a href="#">Steam code wallet 20$</a>
-                        <a href="#">Steam code wallet 50$</a>
-                        <a href="#">Steam code wallet 15$</a>
-                        <a href="#">Steam code wallet 100$</a>
-                        <a href="#">Steam Code Random Game</a>
-                    </div>
+                    <!--                    <button class="dropbtn">Wallet code
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Steam code wallet 5$</a>
+                                            <a href="#">Steam code wallet 10$</a>
+                                            <a href="#">Steam code wallet 20$</a>
+                                            <a href="#">Steam code wallet 50$</a>
+                                            <a href="#">Steam code wallet 15$</a>
+                                            <a href="#">Steam code wallet 100$</a>
+                                            <a href="#">Steam Code Random Game</a>
+                                        </div>-->
                 </div>
                 <div class="child">
                     <div>
@@ -147,6 +147,12 @@
                         <c:import charEncoding="UTF-8" url="filter-list.xsl" var="filterDoc"/>
                         <x:transform doc="${filterXmlString}" xslt="${filterDoc}"/>
                     </div>
+                    <%-- <select name="txtFilter" class="dropdown-content">
+                         <c:set var="categoriesXmlString" value="${sessionScope.CATEGORIES}"/>
+                         <c:import charEncoding="UTF-8" url="filter-list.xsl" var="categoryDoc"/>
+                         <x:transform doc="${categoriesXmlString}" xslt="${categoryDoc}"/>
+                     </select>
+                    --%>
                 </div>
                 <input id="inputFilter" name="txtSearch" type="text" placeholder="Tìm game bạn muốn xem giá ....">
                 <div onclick="filterSearch()" id="btnFilter">Tìm kiếm</div>

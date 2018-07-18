@@ -65,7 +65,7 @@
                 5. User game's name to search for game's price in second page. Then add it to DB.
             </p>
         </div>
-        <form action="productHomePageServlet">
+        <form action="http://localhost:8084/Crawling_XML/">
             <button type="submit" name="btAction" class="button">
                 Home
             </button>

@@ -76,7 +76,7 @@ public class getProduct extends Thread {
             }
 
             //for each category i: category index
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < getCategory.cateList.size(); i++) {
                 if (isInterupt == true) {
                     break;
                 }

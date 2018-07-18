@@ -23,12 +23,6 @@
     <body>
         <div class="div-body">
 
-
-
-            <%--
-            <c:out value="${categoriesXmlString}"/>
-            --%>
-
             <!-- drop down bar -->
             <div class="top-nav container">
                 <div class="child">
@@ -45,29 +39,29 @@
                     </div>
                 </div>
                 <div class="child">
-                    <button class="dropbtn">Nhà phát hành
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#">Origin</a>
-                        <a href="#">Uplay</a>
-                        <a href="#">Steam</a>
-                        <a href="#">Battle.net</a>
-                    </div>
+                    <!--                    <button class="dropbtn">Nhà phát hành
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Origin</a>
+                                            <a href="#">Uplay</a>
+                                            <a href="#">Steam</a>
+                                            <a href="#">Battle.net</a>
+                                        </div>-->
                 </div>
                 <div class="child">
-                    <button class="dropbtn">Wallet code
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#">Steam code wallet 5$</a>
-                        <a href="#">Steam code wallet 10$</a>
-                        <a href="#">Steam code wallet 20$</a>
-                        <a href="#">Steam code wallet 50$</a>
-                        <a href="#">Steam code wallet 15$</a>
-                        <a href="#">Steam code wallet 100$</a>
-                        <a href="#">Steam Code Random Game</a>
-                    </div>
+                    <!--                    <button class="dropbtn">Wallet code
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Steam code wallet 5$</a>
+                                            <a href="#">Steam code wallet 10$</a>
+                                            <a href="#">Steam code wallet 20$</a>
+                                            <a href="#">Steam code wallet 50$</a>
+                                            <a href="#">Steam code wallet 15$</a>
+                                            <a href="#">Steam code wallet 100$</a>
+                                            <a href="#">Steam Code Random Game</a>
+                                        </div>-->
                 </div>
                 <div class="child">
                     <div>
@@ -320,5 +314,4 @@
         <script src="slideshow.js"></script>
         <script src="filter.js"></script>
     </body>
-
 </html>
